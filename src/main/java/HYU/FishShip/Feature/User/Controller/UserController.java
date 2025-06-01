@@ -94,13 +94,14 @@ public class UserController {
     private ResponseEntity<FindUserIdResponseDTO> checkUserId(@RequestBody FindUserIdRequestDTO requestDTO) {
         try {
             User user = userService.findUserId(requestDTO);
-            return ResponseEntity.ok(new FindUserIdResponseDTO(HttpStatus.OK,"회원 ID 조회 성공: " + user.getLoginId()));
+            String loginId = user.getLoginId();
+            return ResponseEntity.ok(new FindUserIdResponseDTO(loginId,HttpStatus.OK,"회원 ID 조회 성공: " + user.getLoginId()));
         } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().body(new FindUserIdResponseDTO(HttpStatus.BAD_REQUEST,
+            return ResponseEntity.badRequest().body(new FindUserIdResponseDTO(null,HttpStatus.BAD_REQUEST,
                     "해당 정보를 가진 회원이 없습니다."));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(
-                    new FindUserIdResponseDTO(HttpStatus.INTERNAL_SERVER_ERROR, "서버 오류"));
+                    new FindUserIdResponseDTO(null,HttpStatus.INTERNAL_SERVER_ERROR, "서버 오류"));
         }
     }
     @Operation(summary = "비밀번호 수정", description = "비밀번호 수정합니다.")

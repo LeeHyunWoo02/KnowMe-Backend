@@ -15,8 +15,10 @@ public class FindUserIdResponseDTO {
     @Schema(description = "응답 메시지", example = "요청이 성공적으로 처리되었습니다.")
     private String message;
 
+    private String loginId;
 
-    public FindUserIdResponseDTO(HttpStatus status, String message) {
+    public FindUserIdResponseDTO(String loginId,HttpStatus status, String message) {
+        this.loginId = loginId;
         this.status = status;
         this.message = message;
     }
