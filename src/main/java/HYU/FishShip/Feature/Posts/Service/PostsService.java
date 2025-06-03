@@ -67,15 +67,15 @@ public class PostsService {
         //연관 리스트 매핑
         List<Requirement> newRequirements = dto.getRequirements().stream()
                 .map(r -> Requirement.builder().content(r).post(post).build())
-                .collect(Collectors.toList());
+                .toList();
 
         List<Benefit> newBenefits = dto.getBenefits().stream()
                 .map(b -> Benefit.builder().content(b).post(post).build())
-                .collect(Collectors.toList());
+                .toList();
 
         List<Attachment> newAttachments = dto.getAttachments().stream()
                 .map(a -> Attachment.builder().fileName(a.getFileName()).url(a.getUrl()).build())
-                .collect(Collectors.toList());
+                .toList();
 
 
         // 기존 리스트 초기화 후 새 요소 추가
@@ -107,7 +107,7 @@ public class PostsService {
 
         return postsList.stream()
                 .map(PostsMapper::toDto)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     // 공고 상세 조회
@@ -134,7 +134,7 @@ public class PostsService {
         );
         return filteredPosts.stream()
                 .map(PostsMapper::toDto)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     // 검색어로 필터링된 공고 목록 조회
@@ -142,6 +142,6 @@ public class PostsService {
         List<Posts> postsList = postsRepository.findByKeyword(keyword);
         return postsList.stream()
                 .map(PostsMapper::toDto)
-                .collect(Collectors.toList());
+                .toList();
     }
 }

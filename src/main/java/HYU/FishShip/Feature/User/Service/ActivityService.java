@@ -57,7 +57,7 @@ public class ActivityService {
                         .visibility(activity.getVisibility())
                         .tags(activity.getTags())
                         .build())
-                .collect(Collectors.toList());
+                .toList();
 
         return new PortfolioResponseDTO(userId, portfolioList);
     }

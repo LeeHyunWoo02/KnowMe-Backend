@@ -25,15 +25,15 @@ public class PostsMapper {
 
         List<Requirement> requirements = dto.getRequirements().stream()
                 .map(req -> Requirement.builder().content(req).post(post).build())
-                .collect(Collectors.toList());
+                .toList();
 
         List<Benefit> benefits = dto.getBenefits().stream()
                 .map(bnf -> Benefit.builder().content(bnf).post(post).build())
-                .collect(Collectors.toList());
+                .toList();
 
         List<Attachment> attachments = dto.getAttachments().stream()
                 .map(a -> Attachment.builder().fileName(a.getFileName()).url(a.getUrl()).build())
-                .collect(Collectors.toList());
+                .toList();
 
         post.setRequirements(requirements);
         post.setBenefits(benefits);
